@@ -1,15 +1,17 @@
 const matchPair = function (list1, list2) {
   const lookup = {};
-  for (const text of list1) {
-    lookup[text.slice(text.length - 4)] = text;
+
+  for (const word of list1) {
+    const lastFourChars = word.slice(word.length - 4);
+    lookup[lastFourChars] = word;
   }
 
-  const list3 = list2.map((text) => {
-    const precidingChars = text.slice(0, 4);
-    return lookup[precidingChars] + text.slice(4);
+  const mergedWords = list2.map((word) => {
+    const firstFourChars = word.slice(0, 4);
+    return lookup[firstFourChars] + word.slice(4);
   });
 
-  return list3;
+  return mergedWords;
 }
 
 exports.matchPair = matchPair;
